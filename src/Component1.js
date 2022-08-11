@@ -3,7 +3,7 @@ import "./Component1.css"
 import {data} from "./Data.js"
 import {useState} from 'react'
 import { Button, Drawer } from '@mui/material'
-import { SearchOffRounded } from '@mui/icons-material'
+
 
 export default function Component1() {
 
@@ -14,6 +14,7 @@ export default function Component1() {
     const [flag3,setFlag3]=useState(false)
     const [flag4,setFlag4]=useState(false)
     const [flag5,setFlag5]=useState(false)
+    const[flagnav , setFlagnav]=useState(false)
     //searchname contains the text typed in searchbox
     const[searchname, setSearchname]=useState([])
 
@@ -72,6 +73,7 @@ export default function Component1() {
         if(d===1){
             if(flag2===false){
                 setFlag2(true) 
+                setFlag(false)
             }
             else if(flag2===true){
                 setFlag2(false)
@@ -81,6 +83,8 @@ export default function Component1() {
         if(d===2){
             if(flag3===false){
                 setFlag3(true) 
+                setFlag(false)
+
             }
             else if(flag3===true){
                 setFlag3(false)
@@ -89,6 +93,8 @@ export default function Component1() {
         if(d===3){
             if(flag4===false){
                 setFlag4(true) 
+                setFlag(false)
+
             }
             else if(flag4===true){
                 setFlag4(false)
@@ -100,6 +106,14 @@ export default function Component1() {
         
       
     }
+
+    const  w3_open=()=> {
+        document.getElementById("mySidebar").style.display = "block";
+      }
+      
+      const w3_close=()=> {
+        document.getElementById("mySidebar").style.display = "none";
+      }
 
     //onchange function of search box
 
@@ -152,25 +166,31 @@ export default function Component1() {
     }
   return (
     <div id="component1_main_div">
-        <marquee>Free Shipping Over Rs. 1000.</marquee>
+        <marquee><span>Free Shipping Over Rs. 1000.</span><span style={{marginLeft:"50%"}}>Free Shipping Over Rs. 1000.</span></marquee>
         <div id="logo_div_id"><p>SHOPCLUES</p><p id="fine_lifestyle_clothes_p_id">Fine Lifestyle Clothes</p></div>
         <div id="navicon_div_id"><div class="popover__wrapper">
-  <a href="#">
-    <h2 class="popover__title"><i class="fas fa-bars navicon popover__title" ></i></h2>
-  </a>
-  <div class="popover__content">
-    <p class="popover__message"><input type="checkbox" onClick={()=>checkboxfun(1)}/>Men's Shirt</p>
-    <p class="popover__message"><input type="checkbox" onClick={()=>checkboxfun(2)}/>Men's Trousers</p>
-    <p class="popover__message"><input type="checkbox" onClick={()=>checkboxfun(3)}/>Men's tshirt</p>
+  
+    <h2 class="popover__title"><i class="fas fa-bars navicon popover__title"  onClick={w3_open}></i></h2>
+ 
+<div style={{width:"150px",display:"none" , backgroundColor:"white"}} id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-hide-large" onClick={w3_close}>Close &times;</button>
+  <div id ="check"  >
+           
+            <div >
+          <p className="check1p"><input type="checkbox" onClick={()=>checkboxfun(1)} className="check1"/>Men's Shirt</p>
+          <p className="check1p"><input type="checkbox" onClick={()=>checkboxfun(2)} className="check1"/>Men's Trousers</p>
+          <p className="check1p"><input type="checkbox" onClick={()=>checkboxfun(3)} className="check1"/>Men's tshirt</p>
     
-  </div>
+
+         </div>
+            </div>
+</div>
+  
 </div>
         <div id="search_id_div"><input type="text" id="search_input_id" autoFocus onChange={searchfun}/><i class="fa fa-search search_icon" aria-hidden="true" onClick={searchiconclick}></i></div>
-        <div id="cart_div_id"><i class="fa fa-shopping-cart cart_icon" aria-hidden="true" onClick={()=>setFlag1(true)}></i><sup style={{color:"white",fontSize:"2vw",backgroundColor:"#662B15",borderRadius:"50%"}}>{cartid.length}</sup></div>
+        <div id="cart_div_id"><i class="fa fa-shopping-cart cart_icon" aria-hidden="true" onClick={()=>setFlag1(true)}></i><sup style={{color:"black",fontSize:"2vw"}}>{cartid.length}</sup></div>
         </div>
         <div id="welcome_and_product_button">
-
-
             <p id="welcome1">WELCOME TO SHOPCLUES</p>
             <p id="welcome2">Before you get settled in, here's a quick lowdown. Established in 2007, shopclues is a small independent fine lifestyle clothes brand. Men's t-shirt , shirts , trousers made in India of rich fabric, felted wool and cotton alternative.</p>
             <p id="btn_p_id"><button id="btn_id_show_me_the_clothes" onClick={buttonfun}>SHOW ME THE CLOTHES</button></p>
@@ -277,7 +297,10 @@ export default function Component1() {
           <p id="total_amount">{"Total Amount : " +totalamount}</p>
           <button id="checkout">Checkout</button>
           </div>
-        </Drawer>
+        </Drawer >
+     
+          
+       
         
     </div>
     
